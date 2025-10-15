@@ -1,0 +1,124 @@
+{
+  "info": {
+    "name": "Blog Platform API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw","raw": "{
+  "username": "shaq",
+  "email": "shaq@example.com",
+  "password": "123456"
+}"},
+            "url": {"raw": "{{baseUrl}}/auth/register","host": ["{{baseUrl}}"],"path": ["auth","register"]}
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type","value": "application/json"}],
+            "body": {"mode": "raw","raw": "{
+  "email": "shaq@example.com",
+  "password": "123456"
+}"},
+            "url": {"raw": "{{baseUrl}}/auth/login","host": ["{{baseUrl}}"],"path": ["auth","login"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization","value": "Bearer {{token}}"},{"key": "Content-Type","value": "application/json"}],
+            "body": {"mode": "raw","raw": "{
+  "title": "Shaq’s First Post",
+  "content": "This is my first post!",
+  "tags": ["intro"]
+}"},
+            "url": {"raw": "{{baseUrl}}/posts","host": ["{{baseUrl}}"],"path": ["posts"]}
+          }
+        },
+        {
+          "name": "Get All Posts",
+          "request": {"method": "GET","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/posts","host": ["{{baseUrl}}"],"path": ["posts"]}}
+        },
+        {
+          "name": "Get Single Post",
+          "request": {"method": "GET","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/posts/{{postId}}","host": ["{{baseUrl}}"],"path": ["posts","{{postId}}"]}}
+        },
+        {
+          "name": "Update Post",
+          "request": {"method": "PUT","header": [{"key": "Authorization","value": "Bearer {{token}}"},{"key": "Content-Type","value": "application/json"}],"body": {"mode": "raw","raw": "{
+  "title": "Updated Title"
+}"},"url": {"raw": "{{baseUrl}}/posts/{{postId}}","host": ["{{baseUrl}}"],"path": ["posts","{{postId}}"]}}
+        },
+        {
+          "name": "Delete Post",
+          "request": {"method": "DELETE","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/posts/{{postId}}","host": ["{{baseUrl}}"],"path": ["posts","{{postId}}"]}}
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization","value": "Bearer {{token}}"},{"key": "Content-Type","value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/api/comments/:postId","host": ["{{baseUrl}}"],"path": ["api","comments",":postId"]},
+            "body": {"mode": "raw","raw": "{
+  "text": "Nice post!"
+}"}
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {"method": "DELETE","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/api/comments/:id","host": ["{{baseUrl}}"],"path": ["api","comments",":id"]}}
+        }
+      ]
+    },
+    {
+      "name": "User Profile",
+      "item": [
+        {
+          "name": "Get My Profile",
+          "request": {"method": "GET","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/api/users/me","host": ["{{baseUrl}}"],"path": ["api","users","me"]}}
+        },
+        {
+          "name": "Get User By ID",
+          "request": {"method": "GET","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/api/users/:id","host": ["{{baseUrl}}"],"path": ["api","users",":id"]}}
+        },
+        {
+          "name": "Update Bio & Avatar",
+          "request": {"method": "PUT","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"body": {"mode": "formdata","formdata": [{"key": "bio","value": "This is Shaq's bio","type": "text"},{"key": "avatar","type": "file"}]},"url": {"raw": "{{baseUrl}}/api/users/me","host": ["{{baseUrl}}"],"path": ["api","users","me"]}}
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {"method": "GET","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/api/admin/users","host": ["{{baseUrl}}"],"path": ["api","admin","users"]}}
+        },
+        {
+          "name": "Delete User",
+          "request": {"method": "DELETE","header": [{"key": "Authorization","value": "Bearer {{token}}"}],"url": {"raw": "{{baseUrl}}/api/admin/users/:id","host": ["{{baseUrl}}"],"path": ["api","admin","users",":id"]}}
+        }
+      ]
+    }
+  ]
+}

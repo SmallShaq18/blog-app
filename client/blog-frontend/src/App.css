@@ -1,0 +1,219 @@
+:root {
+  --bs-primary: #e50914; /* Netflix red vibe */
+  --bs-secondary: #6c757d; /* subtle gray */
+  --bs-success: #16a34a; /* emerald */
+  --bs-danger: #dc2626; /* deep red */
+  --bs-warning: #f59e0b; /* amber */
+  --bs-info: #0ea5e9; /* cyan */
+}
+
+[data-bs-theme="light"] {
+  /* Brand Colors */
+  --bs-primary: #6366F1; /* Indigo */
+  --bs-warning: #F59E0B; /* Amber */
+
+  /* Neutral palette (light mode) */
+  --color-bg: #F9FAFB;
+  --color-text: #1F2937;
+  --color-border: #E5E7EB;
+  --color-primary: #6366F1;
+  --color-accent: #F59E0B;
+}
+
+[data-bs-theme="dark"] {
+  /* Brand Colors stay same */
+  --bs-primary: #6366F1;
+  --bs-warning: #F59E0B;
+
+  /* Neutral palette (dark mode) */
+  --color-bg: #010610;
+  --color-text: #F9FAFB;
+  --color-border: #374151;
+  --color-primary: #6366F1;
+  --color-accent: #F59E0B;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.fetcher{
+  background: var(--color-bg);
+}
+
+.card {
+  border: 1px solid var(--color-border);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.text-accent {
+  color: var(--color-accent);
+}
+
+
+/* ===== Outline buttons ===== */
+.btn-outline-primary {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary-hover);
+  color: #F59E0B;
+  border-color: var(--bs-primary-hover);
+}
+
+.btn-outline-secondary {
+  color: var(--bs-secondary);
+  border-color: var(--bs-secondary);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--bs-secondary-hover);
+  color: #fff;
+  border-color: var(--bs-secondary-hover);
+}
+
+/* ===== Borders ===== */
+.border-primary {
+  border-color: var(--bs-primary) !important;
+}
+.border-secondary {
+  border-color: var(--bs-secondary) !important;
+}
+.border-success {
+  border-color: var(--bs-success) !important;
+}
+.border-danger {
+  border-color: var(--bs-danger) !important;
+}
+.border-warning {
+  border-color: var(--bs-warning) !important;
+}
+.border-info {
+  border-color: var(--bs-info) !important;
+}
+
+
+
+.heart-anim {
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.4); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.comment input {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.comment input:focus {
+  box-shadow: none;
+  border-color: var(--color-primary);
+  outline: none;
+}
+.comment-btn {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border: none;
+  border-radius: 0 !important;
+  font-size: small;
+}
+.comment-btn:hover {
+  background-color: var(--bs-primary-hover);
+  color: var(--color-accent);
+}
+
+img {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+/* Target any scrollable element */
+::-webkit-scrollbar {
+  width: 1px;   /* vertical scrollbar width */
+  height: 4px;  /* horizontal scrollbar height */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* or a subtle color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);  /* scrollbar color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent);
+}
+
+
+
+
+
+@media screen and (max-width: 991.98px) {
+
+  .toggler-icon {
+  width: 25px !important;
+  height: 3px !important;
+  background-color: white !important;
+  margin: 5px 0;
+  transition: 0.4s;
+  display: block;
+}
+
+.navbar-toggler.open .toggler-icon:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler.open .toggler-icon:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler.open .toggler-icon:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+.navv{
+    align-items: center;
+}
+.navbar-custom {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030; /* Bootstrap's default navbar z-index */
+  }
+
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+
+  
+
+  
+
+  
+}
+
+
+
+

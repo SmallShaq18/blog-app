@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://blog-app-bl6x.onrender.com/api",//http://localhost:5000/api
 });
 
 // Add a request interceptor

@@ -19,7 +19,7 @@ const ProfileHeader = ({ profile, isOwner, onUpdate }) => {
     if (avatarFile) formData.append("avatar", avatarFile);
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/me", {
+      const res = await fetch("https://blog-app-bl6x.onrender.com/api/users/me", {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

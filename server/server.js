@@ -18,7 +18,32 @@ const app = express();
 
 
 // Middlewares
-app.use(cors());
+import cors from "cors";
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://blog-app-bl6x.onrender.com" // your backend itself (optional)
+];
+
+// Allow any Vercel deployment of your blog app
+const dynamicOrigin = (origin, callback) => {
+  if (
+    !origin || // allow tools like Postman
+    allowedOrigins.includes(origin) ||
+    /https:\/\/blog-app.*\.vercel\.app$/.test(origin) // any subdomain of blog-app on Vercel
+  ) {
+    callback(null, true);
+  } else {
+    callback(new Error("CORS not allowed for this origin: " + origin));
+  }
+};
+
+app.use(cors({
+  origin: dynamicOrigin,
+  credentials: true,
+}));
+
+//app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 
 // allow larger JSON payloads (e.g., base64 images)

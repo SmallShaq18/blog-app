@@ -103,7 +103,7 @@ function Profile() {
                   </Link>
             <Link to={`/posts/${post._id}`} className="text-decoration-none text-reset" >
             <h3 className="fw-bold text-capitalize">{post.title}</h3>
-            <p>{post.content.substring(0, 150)}...</p>
+            <p style={{ wordBreak: "break-word" }}>{post.content.substring(0, 150)}...</p>
             <div className="d-flex justify-content-center">
             {post.image && (
               <img

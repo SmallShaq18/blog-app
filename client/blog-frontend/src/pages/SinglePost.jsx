@@ -309,7 +309,7 @@ const SinglePost = () => {
               <h5 className="fw-bold text-truncate">
                   {r.title}
                 </h5>
-                <p className="text-muted small" style={{ minHeight: "60px" }}>
+                <p className="text-muted small" style={{ minHeight: "60px", wordBreak: "break-word" }}>
                   {r.content.length > 100
                     ? r.content.substring(0, 100) + "..."
                     : r.content}

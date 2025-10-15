@@ -97,7 +97,7 @@ const CreatePost = () => {
 
             {/* Tags */}
             <Form.Group className="mb-3">
-              <Form.Label className="fw-semibold">Genres (comma separated)</Form.Label>
+              <Form.Label className="fw-semibold">Genres (comma separated. Optional)</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="e.g. Action, Sci-Fi, Drama"

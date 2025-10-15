@@ -199,7 +199,7 @@ const HomePage = () => {
                       </div>
 
                       {/* Content preview */}
-                      <p className="mt-2">
+                      <p className="mt-2" style={{ wordBreak: "break-word" }}>
                         {post.content.length > 160
                           ? post.content.substring(0, 160) + "..."
                           : post.content}

@@ -119,7 +119,7 @@ function MyProfile() {
                   </Link>
             <Link to={`/posts/${post._id}`} className="text-decoration-none text-reset" >
             <h3 className="fw-bold text-capitalize">{post.title}</h3>
-            <p>
+            <p style={{ wordBreak: "break-word" }}>
               {post.content.length > 150
                 ? `${post.content.substring(0, post.content.lastIndexOf(" ", 150))}...`
                 : post.content}

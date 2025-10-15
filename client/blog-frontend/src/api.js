@@ -3,6 +3,61 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const API = axios.create({
+  baseURL: "https://blog-app-bl6x.onrender.com/api",
+  timeout: 5000, // optional: 5s timeout
+});
+
+// Add request interceptor
+API.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Add response interceptor with safe retry
+API.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    // Only retry once, and only on network/timeout errors
+    if (!originalRequest._retry && (!error.response || error.code === "ECONNABORTED")) {
+      originalRequest._retry = true;
+
+      // Small delay before retry
+      await new Promise((r) => setTimeout(r, 1000));
+
+      return API(originalRequest);
+    }
+
+    // Handle other errors globally
+    const message =
+      error.response?.data?.message || error.message || "Something went wrong!";
+
+    if (error.response?.status === 401) {
+      // auto logout if token expired
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/login";
+    }
+
+    toast.error(message);
+    return Promise.reject(error);
+  }
+);
+
+export default API;
+
+
+/*import axios from "axios";
+import { toast } from "react-toastify";
+
+const API = axios.create({
   baseURL: "https://blog-app-bl6x.onrender.com/api",//http://localhost:5000/api
 });
 
@@ -37,4 +92,4 @@ API.interceptors.response.use(
   }
 );
 
-export default API;
+export default API;*/

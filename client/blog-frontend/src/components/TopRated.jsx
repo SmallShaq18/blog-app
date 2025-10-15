@@ -40,7 +40,7 @@ export const TopRated = ({ userId, username }) => {
       
       {/* Scrollable section for mobile */}
     <div
-      className="d-lg-none"
+      className="d-lg-none p-2"
       style={{
         width: "100vw",
         marginLeft: "calc(-40vw + 50%)", // Break out of container padding

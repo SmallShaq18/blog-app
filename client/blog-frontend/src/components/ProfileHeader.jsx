@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { Toast } from "react-bootstrap";
 import { useAuthContext } from "../AuthContext";
 import { Container } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const ProfileHeader = ({ profile, isOwner, onUpdate }) => {
   const { user } = useAuthContext();
   const DEFAULT_AVATAR = "https://res.cloudinary.com/dlu8ltbx1/image/upload/v1758373732/default_avatar_ngs4rn.jpg";
   const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [bio, setBio] = useState(profile?.bio || "");
   const [avatarFile, setAvatarFile] = useState(null);
 
@@ -14,6 +17,7 @@ const ProfileHeader = ({ profile, isOwner, onUpdate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSaving(true);
     const formData = new FormData();
     formData.append("bio", bio);
     if (avatarFile) formData.append("avatar", avatarFile);
@@ -32,9 +36,12 @@ const ProfileHeader = ({ profile, isOwner, onUpdate }) => {
       const updated = await res.json();
       onUpdate(updated); // update parent
       setEditing(false);
+      toast.success("Update successful");
     } catch (err) {
       console.error(err);
       alert("Failed to update profile");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -75,8 +82,8 @@ const ProfileHeader = ({ profile, isOwner, onUpdate }) => {
             className="form-control mb-2"
             onChange={(e) => setAvatarFile(e.target.files[0])}
           />
-          <button type="submit" className="btn btn-primary me-2">
-            Save
+          <button type="submit" className="btn btn-primary me-2" disabled={saving}>
+            {saving ? "saving..." : "Save"}
           </button>
           <button
             type="button"

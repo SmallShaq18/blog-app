@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../api";
 import {Loader } from "lucide-react";
-import timeAgo from "../timeAgo"
+import timeAgo from "../timeAgo";
+import { Button } from "react-bootstrap";
 
 export default function Trending() {
   const [posts, setPosts] = useState([]);
